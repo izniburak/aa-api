@@ -16,48 +16,48 @@ use Exception;
 class AnadoluAgency implements AnadoluAgencyInterface
 {
 	/**
-   * The client object.
-   *
-   * @var \GuzzleHttp\Client
-   */
+	 * The client object.
+	 *
+	 * @var \GuzzleHttp\Client
+	 */
 	protected $client = null;
 
 	/**
-   * Auth information.
-   *
-   * @var array
-   */
+	 * Auth information.
+	 *
+	 * @var array
+	 */
 	protected $auth = [];
 
 	/**
-   * Headers information.
-   *
-   * @var null
-   */
+	 * Headers information.
+	 *
+	 * @var null
+	 */
 	protected $headers = null;
 
 	/**
-   * Response object.
-   *
-   * @var \GuzzleHttp\Psr7\Response
-   */
+	 * Response object.
+	 *
+	 * @var \GuzzleHttp\Psr7\Response
+	 */
 	protected $response = null;
 
 	/**
-   * Files attributes in Response.
-   *
-   * @var null
-   */
+	 * Files attributes in Response.
+	 *
+	 * @var null
+	 */
 	protected $attr = null;
 
 	/**
-   * Create a new instance.
-   *
-   * @param  string  $user
-   * @param  string  $pass
+	 * Create a new instance.
+	 *
+	 * @param  string  $user
+	 * @param  string  $pass
 	 * @param  float|int  $timeout
-   * @return  void
-   */
+	 * @return  void
+	 */
 	public function __construct($user, $pass, $timeout = 3.0)
 	{
 		$this->client = new Client([
@@ -71,12 +71,12 @@ class AnadoluAgency implements AnadoluAgencyInterface
 	}
 
 	/**
-   * Add headers information for request.
-   *
+	 * Add headers information for request.
+	 *
 	 * @param  string  $key
-   * @param  string  $value
-   * @return  \Buki\AnadoluAgency
-   */
+	 * @param  string  $value
+	 * @return  \Buki\AnadoluAgency
+	 */
 	public function addHeader($key, $value = null)
 	{
 		if(is_array($key))
@@ -89,12 +89,12 @@ class AnadoluAgency implements AnadoluAgencyInterface
 	}
 
 	/**
-   * Add time interval information in request header.
-   *
+	 * Add time interval information in request header.
+	 *
 	 * @param  string  $start
 	 * @param  string  $end
-   * @return  \Buki\AnadoluAgency
-   */
+	 * @return  \Buki\AnadoluAgency
+	 */
 	public function time($start = '*', $end = "NOW")
 	{
 		if($start != '*')
@@ -109,14 +109,14 @@ class AnadoluAgency implements AnadoluAgencyInterface
 	}
 
 	/**
-   * Add filter informations in request header.
-   *
+	 * Add filter informations in request header.
+	 *
 	 * @param  string  $type
 	 *     provider, category, priorty, package,
 	 *     type, language, search
 	 * @param  array  $value
-   * @return  \Buki\AnadoluAgency
-   */
+	 * @return  \Buki\AnadoluAgency
+	 */
 	public function filter($type, array $value)
 	{
 		$value = implode(',', $value);
@@ -129,12 +129,12 @@ class AnadoluAgency implements AnadoluAgencyInterface
 	}
 
 	/**
-   * Add limit informations in header.
-   *
+	 * Add limit informations in header.
+	 *
 	 * @param  int  $limit
 	 * @param  int  $offset
-   * @return  \Buki\AnadoluAgency
-   */
+	 * @return  \Buki\AnadoluAgency
+	 */
 	public function limit($limit, $offset = null)
 	{
 		if(is_null($offset))
@@ -152,21 +152,21 @@ class AnadoluAgency implements AnadoluAgencyInterface
 	}
 
 	/**
-   * API Discover request.
-   *
+	 * API Discover request.
+	 *
 	 * @param  string  $lang
-   * @return  json|\GuzzleHttp\Psr7\Response
-   */
+	 * @return  json|\GuzzleHttp\Psr7\Response
+	 */
 	public function discover($lang = "tr_TR")
 	{
 		return $this->get("/abone/discover/" . $lang);
 	}
 
 	/**
-   * API Search request.
-   *
-   * @return  json|\GuzzleHttp\Psr7\Response
-   */
+	 * API Search request.
+	 *
+	 * @return  json|\GuzzleHttp\Psr7\Response
+	 */
 	public function search()
 	{
 		return $this->post("/abone/search/");
@@ -245,34 +245,34 @@ class AnadoluAgency implements AnadoluAgencyInterface
 	}
 
 	/**
-   * Get request for API.
-   *
-   * @param  string  $url
-   * @return  json|\GuzzleHttp\Psr7\Response
-   */
+	 * Get request for API.
+	 *
+	 * @param  string  $url
+	 * @return  json|\GuzzleHttp\Psr7\Response
+	 */
 	protected function get($url)
 	{
 		return $this->request("GET", $url);
 	}
 
 	/**
-   * Post request for API.
-   *
-   * @param  string  $url
-   * @return  json|\GuzzleHttp\Psr7\Response
-   */
+	 * Post request for API.
+	 *
+	 * @param  string  $url
+	 * @return  json|\GuzzleHttp\Psr7\Response
+ 	 */
 	protected function post($url)
 	{
 		return $this->request("POST", $url);
 	}
 
 	/**
-   * API Request.
-   *
+	 * API Request.
+	 *
 	 * @param  string  $method
-   * @param  string  $url
-   * @return  json|\GuzzleHttp\Psr7\Response
-   */
+	 * @param  string  $url
+	 * @return  json|\GuzzleHttp\Psr7\Response
+	 */
 	protected function request($method, $url)
 	{
 		$this->response = $this->client->request($method, $url, [
@@ -300,11 +300,11 @@ class AnadoluAgency implements AnadoluAgencyInterface
 	}
 
 	/**
-   * Time formatting.
-   *
+	 * Time formatting.
+	 *
 	 * @param  string  $time
-   * @return  string
-   */
+	 * @return  string
+	 */
 	protected function timeFormat($time)
 	{
 		$timestamp = strtotime($time);
