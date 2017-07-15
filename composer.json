@@ -1,0 +1,21 @@
+{
+    "name": "izniburak/aa-api",
+    "type": "library",
+    "description": "Anadolu Agency (Anadolu Ajansı) API Client",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "İzni Burak Demirtaş",
+            "email": "info@burakdemirtas.org",
+            "homepage": "http://burakdemirtas.org"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "~6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Buki\\": "src"
+        }
+    }
+}
